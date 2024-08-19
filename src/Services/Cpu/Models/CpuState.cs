@@ -21,6 +21,9 @@ public class CpuState
     public ushort ProgramCounter { get; set; }
     public byte StackPointer { get; set; }
 
+    // TODO: Handle overflow
+    public ulong Cycles { get; internal set; } // Total cycles since reset
+
     public StatusFlags Flags
     {
         get => _flags;

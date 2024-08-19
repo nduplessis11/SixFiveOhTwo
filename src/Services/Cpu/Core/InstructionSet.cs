@@ -27,32 +27,32 @@ public class InstructionSet
         // ....
     }
 
-    private void LdaIndirectIndexed(CpuState state, ushort arg2)
+    private void LdaIndirectIndexed(CpuState state, ushort address)
     {
         throw new NotImplementedException();
     }
 
-    private void LdaIndexedIndirect(CpuState state, ushort arg2)
+    private void LdaIndexedIndirect(CpuState state, ushort address)
     {
         throw new NotImplementedException();
     }
 
-    private void LdaAbsoluteY(CpuState state, ushort arg2)
+    private void LdaAbsoluteY(CpuState state, ushort address)
     {
         throw new NotImplementedException();
     }
 
-    private void LdaAbsoluteX(CpuState state, ushort arg2)
+    private void LdaAbsoluteX(CpuState state, ushort address)
     {
         throw new NotImplementedException();
     }
 
-    private void LdaAbsolute(CpuState state, ushort arg2)
+    private void LdaAbsolute(CpuState state, ushort address)
     {
         throw new NotImplementedException();
     }
 
-    private void LdaZeroPageX(CpuState state, ushort arg2)
+    private void LdaZeroPageX(CpuState state, ushort address)
     {
         throw new NotImplementedException();
     }
@@ -65,5 +65,10 @@ public class InstructionSet
     private void LdaZeroPage(CpuState state, ushort address)
     {
         throw new NotImplementedException();
+    }
+
+    internal Instruction GetInstruction(byte opcode)
+    {
+        return _instructions[opcode];
     }
 }
