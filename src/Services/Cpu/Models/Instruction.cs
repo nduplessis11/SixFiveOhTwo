@@ -1,5 +1,9 @@
 ﻿namespace Cpu.Models;
 
-public class Instruction
-{
-}
+public record Instruction(
+    string Name,
+    AddressingMode AddressingMode,
+    int Length,
+    int Cycles,
+    Action<CpuState, ushort> Execute
+);
