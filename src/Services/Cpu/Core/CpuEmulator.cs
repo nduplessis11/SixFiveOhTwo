@@ -1,19 +1,15 @@
 ﻿using Cpu.Models;
+using GrpcMemory;
 
 namespace Cpu.Core;
 
-public class CpuEmulator
+public class CpuEmulator(Memory.MemoryClient memoryClient)
 {
-    private readonly InstructionSet _instructionSet;
-    private readonly CpuState _state;
+    private readonly InstructionSet _instructionSet = new InstructionSet();
+    private readonly CpuState _state = new CpuState();
+    private readonly GrpcMemory.Memory.MemoryClient _memoryClient = memoryClient;
 
-    public CpuEmulator()
-    {
-        _instructionSet = new InstructionSet();
-        _state = new CpuState();
-    }
-
-    public void ExecuteNextInstruction()
+    public async Task ExecuteNextInstructionAsync()
     {
         // Fetch instruction
         // Need memory service... 
@@ -24,7 +20,7 @@ public class CpuEmulator
 
         if (instruction != null)
         {
-            var address = CalculateAddress(instruction.AddressingMode, _state);
+            var address = await CalculateAddress(instruction.AddressingMode, _state);
 
             instruction.Execute(_state, address);
 
@@ -38,9 +34,16 @@ public class CpuEmulator
         }
     }
 
-    private ushort CalculateAddress(AddressingMode addressingMode, CpuState state)
+    private async Task<ushort> CalculateAddress(AddressingMode addressingMode, CpuState state)
     {
-        // Need memory...
-        throw new NotImplementedException();
+        switch (addressingMode)
+        {
+            case AddressingMode.Immediate:
+                var memoryResponse = await _memoryClient.ReadMemoryAsync(new MemoryRequest { Address = (UInt32)state.ProgramCounter + 1 });
+                return (ushort)memoryResponse.Value;
+
+            default:
+                throw new NotImplementedException($"Addressing mode {addressingMode} not implemented");
+        }
     }
 }
