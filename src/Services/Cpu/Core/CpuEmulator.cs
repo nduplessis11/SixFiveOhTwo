@@ -7,13 +7,15 @@ public class CpuEmulator(Memory.MemoryClient memoryClient)
 {
     private readonly InstructionSet _instructionSet = new InstructionSet();
     private readonly CpuState _state = new CpuState();
-    private readonly GrpcMemory.Memory.MemoryClient _memoryClient = memoryClient;
+    private readonly Memory.MemoryClient _memoryClient = memoryClient;
 
     public async Task ExecuteNextInstructionAsync()
     {
         // Fetch instruction
         // Need memory service... 
-        byte opcode = 0xA9;
+        //byte opcode = 0xA9;
+        var response = await _memoryClient.ReadMemoryAsync(new MemoryRequest { Address = (UInt32)_state.ProgramCounter});
+        byte opcode = (byte)response.Value;
 
         // Decode
         var instruction = _instructionSet.GetInstruction(opcode);

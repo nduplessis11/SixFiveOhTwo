@@ -7,6 +7,16 @@ public class MemoryService : GrpcMemory.Memory.MemoryBase
 {
     private readonly byte[] _memory = new byte[65536]; // 64KB
 
+    public MemoryService()
+    {
+        LoadProgram();
+    }
+
+    private void LoadProgram()
+    {
+        _memory[0x00] = 0xA9;
+    }
+
     public override Task<MemoryResponse> ReadMemory(MemoryRequest request, ServerCallContext context)
     {
         if (request.Address <= 0xFFFF)
