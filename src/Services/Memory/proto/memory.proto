@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package Memory;
+
+option csharp_namespace = "GrpcMemory";
+
+service Memory{
+	rpc ReadMemory (MemoryRequest) returns (MemoryResponse);
+	rpc WriteMemory (MemoryRequest) returns (MemoryResponse);
+}
+
+message MemoryRequest {
+    uint32 address = 1;  // 16-bit address represented as uint32
+    uint32 value = 2;    // 8-bit value represented as uint32
+}
+
+message MemoryResponse {
+    uint32 value = 1;    // 8-bit value, stored as uint32
+    bool success = 2;    // Indicates if the operation was successful
+}
