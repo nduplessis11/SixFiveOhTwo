@@ -1,6 +1,6 @@
 # SixFiveOhTwo
 
-**SixFiveOhTwo** is a distributed microservice-based emulator for the MOS 6502 CPU, built using C# and .NET 8. This project leverages gRPC for inter-service communication and RabbitMQ for event-driven messaging, creating a scalable and modular architecture.
+**SixFiveOhTwo** is a distributed microservice-based emulator for the MOS 6502 CPU, built using C# and .NET 8. This project leverages gRPC for inter-service communication and RabbitMQ for event-driven messaging.
 
 ## Table of Contents
 
@@ -14,7 +14,8 @@
 
 ## Introduction
 
-The SixFiveOhTwo project is a modern take on emulating the iconic 6502 CPU. By splitting the emulator's components into microservices, this project demonstrates how distributed systems can be used to emulate classic hardware in a scalable and maintainable way.
+The SixFiveOhTwo project is a modern take on emulating the iconic 6502 CPU. By splitting the emulator's components into microservices, this project demonstrates how distributed systems can be used to emulate classic hardware.
+This project has absolutely no practical purpose—I'm building it just because I want to.
 
 ## Features
 
