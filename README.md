@@ -19,12 +19,12 @@ This project has absolutely no practical purpose—I'm building it just because 
 - **Distributed Architecture:** The emulator is broken down into multiple microservices, each responsible for a specific aspect of the 6502 CPU.
 - **gRPC Communication:** Synchronous communication between microservices using gRPC, ensuring fast and efficient data transfer.
 - **RabbitMQ Integration:** Asynchronous event-driven messaging for handling interrupts and other real-time events.
-- **Modularity:** Easily extend or replace components without affecting the overall system.
-- **Scalability:** The distributed nature allows for horizontal scaling of individual components as needed.
+- **Modularity:** Easily extend or replace components without affecting the overall system. VGA should be possible if huffman encoded over gRPC to reduce bandwidth.
+- **Scalability:** Horizontally scale memory and cpu resources. 8-bit parallel cloud computing is coming.
 
 ## Architecture
 
-The SixFiveOhTwo project is composed of the following microservices:
+### Microservices:
 
 - **CPU Service:** Emulates the 6502 CPU, handling instruction execution and register management.
 - **Memory Service:** Manages memory read/write operations and emulates the 6502 address space.
